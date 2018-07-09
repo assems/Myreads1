@@ -13,9 +13,9 @@ class Search extends Component {
     SearchBook = (query) => {
         if (query.trim() !== '') {
             BooksAPI.search(query).then((res) => {
+                if (res.error) return res
                 res.map(book => (this.props.allBooks.filter((b) => b.id === book.id).map(b => book.shelf = b.shelf)))
-                if (res && res.length) this.setState({ListBook: res, SaveQuery: query})
-                if (res.error) this.setState({ListBook: [], SaveQuery: query})
+                if (res && res.length) this.setState({ListBook: res, SaveQuery: query}
             })
         } else { this.setState({ ListBook: [] }) }
     }
